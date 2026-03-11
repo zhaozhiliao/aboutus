@@ -8,37 +8,31 @@ const faqs = [
     question: "Can I request a specific vehicle not listed on your platform?",
     answer:
       "Absolutely! Our Direct Sourcing service is designed for this exact need. Simply contact our procurement specialists with your specific requirements (make, model, year, condition, quantity), and we'll leverage our extensive network to hand-pick and secure the exact inventory you need directly from individual owners across China.",
-    category: "Sourcing",
   },
   {
     question: "What payment methods do you accept?",
     answer:
       "We accept secure international bank transfers (T/T) for all transactions. For your protection and ours, we maintain official bank records of all payments. All transaction details, including currency (USD/CNY), payment terms, and deadlines, are clearly outlined in your commercial invoice. We also support Letter of Credit (L/C) for large-volume orders.",
-    category: "Payment",
   },
   {
     question: "How does your 200-point inspection process work?",
     answer:
       "Every vehicle undergoes our rigorous 200+ point inspection by certified technicians before listing. We thoroughly check engine performance, transmission, safety features, interior/exterior condition, electrical systems, and accident/flood history. You receive a comprehensive condition report with high-definition photos and videos highlighting every detail—complete transparency, no hidden flaws.",
-    category: "Quality",
   },
   {
     question: "What shipping methods do you offer?",
     answer:
       "We provide flexible shipping solutions including Container (20ft/40ft) and Ro-Ro (Roll-on/Roll-off) services to major ports worldwide. Average delivery time is 30-45 days depending on destination. Our dedicated logistics team handles all export clearance, customs documentation, tax refunds, and international freight forwarding—you focus on sales, we handle the supply chain.",
-    category: "Logistics",
   },
   {
     question: "What if there's a discrepancy with my purchase?",
     answer:
       "We stand behind our vehicles with transparent policies and dedicated support. If there's any discrepancy between the vehicle received and our listing description, contact your regional account manager immediately. Our team will investigate the issue thoroughly and work to resolve it promptly and fairly, ensuring your satisfaction and maintaining our B2B trust.",
-    category: "Support",
   },
   {
     question: "Do you offer 24/7 customer support?",
     answer:
       "Yes! Our multilingual customer support team is available 24/7 to assist with any questions before, during, or after your purchase. Whether you need help with documentation, logistics updates, or technical questions, our regional specialists (covering Central Asia, Middle East, and Africa) provide immediate and highly professional responses in your preferred language.",
-    category: "Support",
   },
 ];
 
@@ -86,26 +80,11 @@ export default function FAQ() {
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full px-6 lg:px-8 py-6 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
               >
-                <div className="flex items-start gap-4 flex-1">
-                  {/* 编号 */}
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                    openIndex === index 
-                      ? 'bg-primary text-white' 
-                      : 'bg-primary/10 text-primary'
-                  }`}>
-                    <span className="text-sm font-bold">{String(index + 1).padStart(2, '0')}</span>
-                  </div>
-                  
-                  <div className="flex-1">
-                    {/* 分类标签 */}
-                    <div className="inline-block px-2 py-0.5 bg-primary/10 rounded text-xs font-semibold text-primary mb-2">
-                      {faq.category}
-                    </div>
-                    {/* 问题 */}
-                    <h3 className="text-lg font-bold text-gray-900 pr-4 group-hover:text-primary transition-colors">
-                      {faq.question}
-                    </h3>
-                  </div>
+                <div className="flex-1 pr-4">
+                  {/* 问题 */}
+                  <h3 className="text-lg lg:text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
+                    {faq.question}
+                  </h3>
                 </div>
 
                 {/* 箭头图标 */}
@@ -122,9 +101,9 @@ export default function FAQ() {
                   openIndex === index ? "max-h-96" : "max-h-0"
                 }`}
               >
-                <div className="px-6 lg:px-8 pb-6 pl-20">
-                  <div className="border-l-2 border-primary/30 pl-6">
-                    <p className="text-gray-700 leading-relaxed">
+                <div className="px-6 lg:px-8 pb-6 pt-2">
+                  <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-primary">
+                    <p className="text-gray-700 leading-relaxed text-base">
                       {faq.answer}
                     </p>
                   </div>
