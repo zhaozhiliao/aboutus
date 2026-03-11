@@ -52,16 +52,6 @@ export default function HeroSection() {
                 </span>
               </h1>
 
-              {/* 核心使命 - 超大突出 */}
-              <div className="max-w-4xl mx-auto px-2">
-                <p className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white/95 leading-relaxed">
-                  Empowering International Dealerships
-                  <span className="block mt-2 sm:mt-3 text-primary-light">
-                    with China's Vast Automotive Inventory
-                  </span>
-                </p>
-              </div>
-
               {/* 关键数据 - 大号展示 */}
               <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 md:gap-16 pt-6 sm:pt-8">
                 <div className="text-center">
@@ -77,6 +67,24 @@ export default function HeroSection() {
                 <div className="text-center">
                   <div className="text-3xl sm:text-5xl md:text-6xl font-bold text-primary-light mb-1 sm:mb-2 drop-shadow-lg">50+</div>
                   <div className="text-white/90 text-xs sm:text-base md:text-lg font-semibold">Countries Served</div>
+                </div>
+              </div>
+
+              {/* 公司介绍文案 */}
+              <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 space-y-4 sm:space-y-6">
+                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg rounded-2xl p-6 sm:p-8 border border-white/20">
+                  <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed mb-4 sm:mb-6">
+                    Founded in 2015, Guazi has evolved into China's premier automotive trading platform. By connecting millions of buyers and sellers, we have fundamentally transformed the used car ecosystem in China. Today, over 800,000 users engage with our platform daily to buy, sell, and trade vehicles.
+                  </p>
+                  <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed mb-4 sm:mb-6">
+                    Backed by approximately $4 billion in funding from world-class investors—including <span className="text-primary-light font-semibold">SoftBank Vision Fund</span>, <span className="text-primary-light font-semibold">Sequoia Capital</span>, <span className="text-primary-light font-semibold">IDG Capital</span>, and <span className="text-primary-light font-semibold">Tencent</span>—and recognized by leading tier-one media, Guazi brings unparalleled scale and reliability to the global market.
+                  </p>
+                  <div className="pt-4 sm:pt-6 border-t border-white/20">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-primary-light mb-3 sm:mb-4">Our Mission</h3>
+                    <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed">
+                      While our roots began with enabling every family to own a better car, our global vision is to empower international dealerships and importers. We provide seamless, reliable, and cost-effective access to China's vast automotive inventory, driving your business success in local markets.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
