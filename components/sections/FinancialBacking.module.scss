@@ -1,0 +1,258 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/common-sections';
+
+.section {
+  @include light-section;
+}
+
+.bgPattern {
+  @include grid-bg-light;
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  @include section-header;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: 0.375rem $spacing-4;
+  background-color: rgba(0, 155, 63, 0.1);
+  border: 1px solid rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  color: $primary;
+  font-size: $text-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  
+  svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+.title {
+  font-size: $text-4xl;
+  font-weight: 700;
+  color: $gray-900;
+  letter-spacing: -0.025em;
+  
+  @include lg {
+    font-size: $text-6xl;
+  }
+}
+
+.divider {
+  @include flex-center;
+  gap: $spacing-2;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 3rem;
+  
+  &.left {
+    @include gradient-to-r(transparent, $primary);
+  }
+  
+  &.right {
+    @include gradient-to-r($primary, transparent);
+  }
+}
+
+.dividerDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: $rounded-full;
+  background-color: $primary;
+}
+
+.subtitle {
+  font-size: $text-lg;
+  color: $gray-600;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.logosGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  @include lg {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+.logoCard {
+  background-color: $white;
+  border: 2px solid rgba(0, 155, 63, 0.15);
+  border-radius: $rounded-3xl;
+  padding: 2rem;
+  box-shadow: 0 2px 8px 0 rgba(0, 155, 63, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  @include flex-center;
+  min-height: 10rem;
+  @include animate-fade-in;
+  position: relative;
+  overflow: hidden;
+  
+  @include lg {
+    min-height: 12rem;
+    padding: 2.5rem;
+  }
+  
+  // 背景光晕效果
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 155, 63, 0.1) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+  }
+  
+  &:hover {
+    border-color: rgba(0, 155, 63, 0.4);
+    box-shadow: 0 8px 24px 0 rgba(0, 155, 63, 0.2);
+    transform: translateY(-4px);
+    
+    &::before {
+      width: 200%;
+      height: 200%;
+      opacity: 1;
+    }
+    
+    .logoImage {
+      transform: scale(1.05);
+    }
+  }
+  
+  .logoImage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 12rem;
+    max-height: 6rem;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+  }
+}
+
+.summary {
+  max-width: 64rem;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(0, 155, 63, 0.08) 0%, rgba(0, 200, 83, 0.05) 100%);
+  border: 2px solid rgba(0, 155, 63, 0.25);
+  border-radius: $rounded-3xl;
+  padding: 3rem 2rem;
+  text-align: center;
+  @include animate-fade-in;
+  animation-delay: 300ms;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -5px rgba(0, 155, 63, 0.15);
+  transition: all 0.4s ease;
+  
+  @include lg {
+    padding: 4rem 3rem;
+  }
+  
+  &:hover {
+    border-color: rgba(0, 155, 63, 0.35);
+    box-shadow: 0 15px 40px -5px rgba(0, 155, 63, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  // 背景装饰
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 20rem;
+    height: 20rem;
+    background: radial-gradient(circle, rgba(0, 155, 63, 0.1) 0%, transparent 70%);
+    border-radius: $rounded-full;
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    left: -10%;
+    width: 20rem;
+    height: 20rem;
+    background: radial-gradient(circle, rgba(0, 200, 83, 0.08) 0%, transparent 70%);
+    border-radius: $rounded-full;
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite reverse;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.summaryTitle {
+  font-size: $text-3xl;
+  font-weight: 700;
+  color: $primary;
+  margin-bottom: $spacing-5;
+  letter-spacing: -0.025em;
+  position: relative;
+  z-index: 1;
+  
+  @include lg {
+    font-size: $text-4xl;
+  }
+}
+
+.summaryText {
+  font-size: $text-base;
+  color: $gray-700;
+  line-height: 1.75;
+  max-width: 48rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  
+  @include lg {
+    font-size: $text-lg;
+  }
+  
+  strong {
+    color: $primary;
+    font-weight: 700;
+  }
+}

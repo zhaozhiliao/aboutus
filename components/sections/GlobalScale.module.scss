@@ -1,0 +1,329 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/animations';
+
+.section {
+  position: relative;
+  padding: 6rem 0;
+  @include gradient-to-br($gray-900, $black, $gray-900);
+  overflow: hidden;
+  
+  @include lg {
+    padding: 8rem 0;
+  }
+}
+
+.gridBg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  background-image: 
+    linear-gradient($primary 1px, transparent 1px),
+    linear-gradient(90deg, $primary 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.glowContainer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+}
+
+.glow1 {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 24rem;
+  height: 24rem;
+  background-color: $primary;
+  border-radius: $rounded-full;
+  filter: blur(96px);
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.glow2 {
+  position: absolute;
+  bottom: 0;
+  right: 25%;
+  width: 24rem;
+  height: 24rem;
+  background-color: $primary;
+  border-radius: $rounded-full;
+  filter: blur(96px);
+  animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 1s;
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-6;
+  @include animate-fade-in;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: 0.375rem $spacing-4;
+  background-color: rgba(0, 155, 63, 0.1);
+  border: 1px solid rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  color: $primary;
+  font-size: $text-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.pulseContainer {
+  position: relative;
+  display: flex;
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+.pulseOuter {
+  @include animate-ping;
+  position: absolute;
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  border-radius: $rounded-full;
+  background-color: $primary;
+  opacity: 0.75;
+}
+
+.pulseInner {
+  position: relative;
+  display: inline-flex;
+  border-radius: $rounded-full;
+  height: 0.5rem;
+  width: 0.5rem;
+  background-color: $primary;
+}
+
+.title {
+  font-size: $text-4xl;
+  font-weight: 700;
+  color: $white;
+  letter-spacing: -0.025em;
+  
+  @include lg {
+    font-size: $text-6xl;
+  }
+}
+
+.divider {
+  @include flex-center;
+  gap: $spacing-2;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 3rem;
+  
+  &.left {
+    @include gradient-to-r(transparent, $primary);
+  }
+  
+  &.right {
+    @include gradient-to-r($primary, transparent);
+  }
+}
+
+.dividerDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: $rounded-full;
+  background-color: $primary;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  @include gradient-to-br(rgba(0, 155, 63, 0.2), rgba(0, 155, 63, 0.1), rgba(0, 155, 63, 0.2));
+  padding: 2px;
+  border-radius: $rounded-3xl;
+  @include backdrop-blur(8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 155, 63, 0.1);
+  
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @include lg {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.statCard {
+  position: relative;
+  @include gradient-to-br(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4), transparent);
+  @include backdrop-blur(12px);
+  padding: 2rem;
+  transition: $transition-all;
+  overflow: hidden;
+  @include animate-fade-in;
+  
+  @include lg {
+    padding: 2.5rem;
+  }
+  
+  &:hover {
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+  }
+}
+
+.statGridPattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+  background-image: 
+    linear-gradient($primary 1px, transparent 1px),
+    linear-gradient(90deg, $primary 1px, transparent 1px);
+  background-size: 20px 20px;
+  
+  .statCard:hover & {
+    opacity: 0.05;
+  }
+}
+
+.statCategory {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: rgba(0, 155, 63, 0.4);
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+  
+  .statCard:hover & {
+    color: rgba(0, 155, 63, 0.6);
+  }
+}
+
+.statBorder {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  @include gradient-to-b(rgba(0, 155, 63, 0), $primary, rgba(0, 155, 63, 0));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s;
+  box-shadow: 0 0 10px rgba(0, 155, 63, 0.5);
+  
+  .statCard:hover & {
+    transform: scaleY(1);
+  }
+}
+
+.statCorner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 4rem;
+  height: 4rem;
+  background-color: rgba(0, 155, 63, 0.05);
+  border-top-left-radius: 9999px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  
+  .statCard:hover & {
+    opacity: 1;
+  }
+}
+
+.statContent {
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  padding-top: $spacing-4;
+}
+
+.statNumberWrapper {
+  position: relative;
+}
+
+.statNumber {
+  font-size: $text-5xl;
+  font-weight: 700;
+  color: $primary;
+  transition: all 0.5s;
+  filter: drop-shadow(0 0 20px rgba(0, 155, 63, 0.3));
+  
+  @include md {
+    font-size: $text-6xl;
+  }
+  
+  @include lg {
+    font-size: $text-7xl;
+  }
+  
+  .statCard:hover & {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 30px rgba(0, 155, 63, 0.5));
+  }
+}
+
+.statGlow {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5rem;
+  height: 0.25rem;
+  background-color: rgba(0, 155, 63, 0.2);
+  filter: blur(4px);
+  transition: all 0.5s;
+  
+  .statCard:hover & {
+    width: 8rem;
+    background-color: rgba(0, 155, 63, 0.4);
+  }
+}
+
+.statLabel {
+  font-size: $text-xs;
+  color: $gray-400;
+  transition: color 0.3s;
+  line-height: 1.2;
+  font-weight: 500;
+  padding: 0 $spacing-2;
+  
+  @include md {
+    font-size: $text-sm;
+  }
+  
+  .statCard:hover & {
+    color: $gray-200;
+  }
+}
+
+.statHoverGlow {
+  position: absolute;
+  inset: 0;
+  @include gradient-to-b(rgba(0, 155, 63, 0), rgba(0, 155, 63, 0), rgba(0, 155, 63, 0.05));
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+  
+  .statCard:hover & {
+    opacity: 1;
+  }
+}

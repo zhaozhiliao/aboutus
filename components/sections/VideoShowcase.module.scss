@@ -1,0 +1,35 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.section {
+  position: relative;
+  padding: 3rem 0;
+  background-color: $black;
+  overflow: hidden;
+  
+  @include lg {
+    padding: 4rem 0;
+  }
+}
+
+.container {
+  @include container;
+}
+
+.videoWrapper {
+  position: relative;
+  border-radius: $rounded-xl;
+  overflow: hidden;
+  box-shadow: $shadow-xl;
+  border: 2px solid rgba(0, 155, 63, 0.3);
+  max-width: 900px;
+  margin: 0 auto;
+  
+  video {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    display: block;
+    object-fit: cover;
+  }
+}

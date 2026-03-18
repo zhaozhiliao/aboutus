@@ -1,0 +1,57 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: $transition-all;
+  
+  &.scrolled {
+    background-color: $white;
+    box-shadow: $shadow-lg;
+  }
+  
+  &.notScrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    @include backdrop-blur(8px);
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-6;
+}
+
+.content {
+  @include flex-center;
+  height: 5rem;
+}
+
+.logo {
+  @include flex-start;
+  gap: $spacing-2;
+}
+
+.logoIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: $primary;
+  border-radius: $rounded-lg;
+  @include flex-center;
+  
+  span {
+    color: $white;
+    font-weight: 700;
+    font-size: $text-xl;
+  }
+}
+
+.logoText {
+  font-size: $text-2xl;
+  font-weight: 700;
+  color: $gray-900;
+}

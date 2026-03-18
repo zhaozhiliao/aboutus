@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import styles from './FAQ.module.scss';
 
 const faqs = [
   {
@@ -40,89 +40,55 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative py-24 lg:py-32 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
-      {/* 背景装饰 */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: 'radial-gradient(circle at 2px 2px, #009B3F 1px, transparent 0)',
-        backgroundSize: '40px 40px'
-      }}></div>
+    <section className={styles.section}>
+      <div className={styles.bgPattern}></div>
 
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
-        {/* 标题区域 */}
-        <div className="text-center mb-20 space-y-6 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-bold tracking-wider">
-            <HelpCircle className="w-3 h-3" />
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.badge}>
             COMMON QUESTIONS
           </div>
-          <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 tracking-tight">
+          <h2 className={styles.title}>
             Frequently Asked Questions
           </h2>
-          <div className="flex items-center justify-center gap-2">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary"></div>
-            <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary"></div>
+          <div className={styles.divider}>
+            <div className={`${styles.dividerLine} ${styles.left}`}></div>
+            <div className={styles.dividerDot}></div>
+            <div className={`${styles.dividerLine} ${styles.right}`}></div>
           </div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Everything you need to know about our services
-          </p>
         </div>
 
         {/* FAQ 手风琴 */}
-        <div className="space-y-4">
+        <div className={styles.faqList}>
           {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-primary/30 overflow-hidden animate-fade-in"
-              style={{ animationDelay: `${index * 50}ms` }}
-            >
-              {/* 问题按钮 */}
+            <div key={index} className={styles.faqItem}>
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 lg:px-8 py-6 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                className={styles.question}
               >
-                <div className="flex-1 pr-4">
-                  {/* 问题 */}
-                  <h3 className="text-lg lg:text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
-                    {faq.question}
-                  </h3>
-                </div>
-
-                {/* 箭头图标 */}
-                <ChevronDown
-                  className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${
-                    openIndex === index ? "rotate-180" : ""
-                  }`}
+                <h3>{faq.question}</h3>
+                <img 
+                  src="/icons/chevron-down.svg" 
+                  alt="" 
+                  className={`${styles.icon} ${openIndex === index ? styles.open : ''}`} 
                 />
               </button>
-              
-              {/* 答案区域 */}
-              <div
-                className={`overflow-hidden transition-all duration-300 ${
-                  openIndex === index ? "max-h-96" : "max-h-0"
-                }`}
-              >
-                <div className="px-6 lg:px-8 pb-6 pt-2">
-                  <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-primary">
-                    <p className="text-gray-700 leading-relaxed text-base">
-                      {faq.answer}
-                    </p>
-                  </div>
+
+              <div className={`${styles.answer} ${openIndex === index ? styles.open : ''}`}>
+                <div className={styles.answerContent}>
+                  <p>{faq.answer}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* 底部提示 */}
-        <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: '300ms' }}>
-          <p className="text-gray-600 mb-4">
+        <div className={styles.bottomTip}>
+          <p className={styles.tipText}>
             Still have questions?
           </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-primary/30"
-          >
-            <HelpCircle className="w-5 h-5" />
+          <a href="#contact" className={styles.contactButton}>
+<img src="/icons/help-circle.svg" alt="" className={styles.buttonIcon} />
             <span>Contact Our Team</span>
           </a>
         </div>

@@ -1,0 +1,571 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/animations';
+
+.section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  @include gradient-to-br($black, $gray-900, $black);
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+}
+
+.gradientOverlay1 {
+  position: absolute;
+  inset: 0;
+  @include gradient-to-b(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
+}
+
+.gradientOverlay2 {
+  position: absolute;
+  inset: 0;
+  @include gradient-to-r(rgba(0, 155, 63, 0.15), transparent, rgba(0, 155, 63, 0.15));
+}
+
+.gridPattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: 
+    linear-gradient($primary 1.5px, transparent 1.5px),
+    linear-gradient(90deg, $primary 1.5px, transparent 1.5px);
+  background-size: 60px 60px;
+}
+
+.glow1 {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 24rem;
+  height: 24rem;
+  background-color: rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  filter: blur(120px);
+  @include animate-pulse(4s);
+}
+
+.glow2 {
+  position: absolute;
+  bottom: 25%;
+  right: 25%;
+  width: 24rem;
+  height: 24rem;
+  background-color: rgba(0, 155, 63, 0.15);
+  border-radius: $rounded-full;
+  filter: blur(120px);
+  animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 1s;
+}
+
+.mainContent {
+  position: relative;
+  min-height: 100vh;
+  @include flex-center;
+  padding: 4rem 1rem;
+  
+  @include sm {
+    padding: 5rem 1.5rem;
+  }
+}
+
+.container {
+  @include container;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  
+  @include sm {
+    gap: 4rem;
+  }
+}
+
+.valueProposition {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  @include animate-slide-up;
+  
+  @include sm {
+    gap: 2rem;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 155, 63, 0.2);
+  @include backdrop-blur(12px);
+  border: 1px solid rgba(0, 200, 83, 0.4);
+  border-radius: $rounded-full;
+  color: $primary-light;
+  font-size: $text-xs;
+  font-weight: 600;
+  box-shadow: 0 10px 15px -3px rgba(0, 155, 63, 0.2);
+  
+  @include sm {
+    padding: 0.625rem 1.5rem;
+    font-size: $text-sm;
+  }
+}
+
+.pulseContainer {
+  position: relative;
+  display: flex;
+  height: 0.625rem;
+  width: 0.625rem;
+  
+  @include sm {
+    height: 0.75rem;
+    width: 0.75rem;
+  }
+}
+
+.pulseOuter {
+  @include animate-ping;
+  position: absolute;
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  border-radius: $rounded-full;
+  background-color: $primary-light;
+  opacity: 0.75;
+}
+
+.pulseInner {
+  position: relative;
+  display: inline-flex;
+  border-radius: $rounded-full;
+  height: 0.625rem;
+  width: 0.625rem;
+  background-color: $primary-light;
+  
+  @include sm {
+    height: 0.75rem;
+    width: 0.75rem;
+  }
+}
+
+.badgeTextFull {
+  display: none;
+  
+  @include sm {
+    display: inline;
+  }
+}
+
+.badgeTextShort {
+  display: inline;
+  
+  @include sm {
+    display: none;
+  }
+}
+
+.title {
+  font-size: $text-3xl;
+  font-weight: 700;
+  color: $white;
+  line-height: 1.2;
+  filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.25));
+  padding: 0 0.5rem;
+  
+  @include sm {
+    font-size: $text-5xl;
+  }
+  
+  @include md {
+    font-size: $text-6xl;
+  }
+  
+  @include lg {
+    font-size: $text-8xl;
+  }
+}
+
+.titleGradient {
+  display: block;
+  margin-top: 0.5rem;
+  @include text-gradient($primary-light, $white, $primary-light);
+  
+  @include sm {
+    margin-top: 1rem;
+  }
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  
+  @include sm {
+    gap: 3rem;
+    padding-top: 2rem;
+  }
+  
+  @include md {
+    gap: 4rem;
+  }
+}
+
+.stat {
+  text-align: center;
+}
+
+.statValue {
+  font-size: $text-3xl;
+  font-weight: 700;
+  color: $primary-light;
+  margin-bottom: 0.25rem;
+  filter: drop-shadow(0 10px 15px rgb(0 0 0 / 0.1));
+  
+  @include sm {
+    font-size: $text-5xl;
+    margin-bottom: 0.5rem;
+  }
+  
+  @include md {
+    font-size: $text-6xl;
+  }
+}
+
+.statLabel {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: $text-xs;
+  font-weight: 600;
+  
+  @include sm {
+    font-size: $text-base;
+  }
+  
+  @include md {
+    font-size: $text-lg;
+  }
+}
+
+.divider {
+  display: none;
+  width: 1px;
+  height: 4rem;
+  background-color: rgba(0, 155, 63, 0.4);
+  
+  @include sm {
+    display: block;
+    height: 5rem;
+  }
+}
+
+.intro {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  
+  @include sm {
+    padding: 0 1.5rem;
+    padding-top: 3rem;
+    gap: 1.5rem;
+  }
+}
+
+.introCard {
+  @include gradient-to-br(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), transparent);
+  @include backdrop-blur(16px);
+  border-radius: $rounded-2xl;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  @include sm {
+    padding: 2rem;
+  }
+  
+  p {
+    font-size: $text-sm;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    
+    @include sm {
+      font-size: $text-base;
+      margin-bottom: 1.5rem;
+    }
+    
+    @include md {
+      font-size: $text-lg;
+    }
+    
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.introDivider {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  position: relative;
+  
+  @include sm {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+  }
+  
+  // 使用渐变分隔线，更柔和
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(0, 155, 63, 0.3) 20%,
+      rgba(0, 155, 63, 0.3) 80%,
+      transparent
+    );
+  }
+}
+
+.missionTitle {
+  font-size: $text-base;
+  font-weight: 700;
+  color: $primary-light;
+  margin-bottom: 0.75rem;
+  
+  @include sm {
+    font-size: $text-lg;
+    margin-bottom: 1rem;
+  }
+  
+  @include md {
+    font-size: $text-xl;
+  }
+}
+
+.highlight {
+  color: $primary-light;
+  font-weight: 600;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  @include animate-slide-up;
+  animation-delay: 0.2s;
+  padding: 0 0.5rem;
+  
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  @include gradient-to-br(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), transparent);
+  @include backdrop-blur(16px);
+  border-radius: $rounded-xl;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: $transition-all;
+  
+  @include sm {
+    border-radius: $rounded-2xl;
+    padding: 1.5rem;
+  }
+  
+  &:hover {
+    border-color: rgba(0, 155, 63, 0.4);
+  }
+}
+
+.cardPrimary {
+  @include gradient-to-br(rgba(0, 155, 63, 0.2), rgba(0, 122, 50, 0.2), transparent);
+  border-color: rgba(0, 155, 63, 0.3);
+  
+  &:hover {
+    border-color: rgba(0, 155, 63, 0.5);
+  }
+}
+
+.cardFull {
+  @include sm {
+    grid-column: span 2;
+  }
+  
+  @include md {
+    grid-column: span 1;
+  }
+}
+
+.cardYear {
+  color: $primary-light;
+  font-size: $text-4xl;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+  
+  @include sm {
+    font-size: $text-5xl;
+    margin-bottom: 1rem;
+  }
+}
+
+.cardTitle {
+  font-size: $text-lg;
+  font-weight: 700;
+  color: $white;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+  
+  @include sm {
+    font-size: $text-xl;
+    margin-bottom: 1rem;
+  }
+}
+
+.cardText {
+  font-size: $text-sm;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.75;
+  
+  @include sm {
+    font-size: $text-base;
+  }
+}
+
+.cardTextBright {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  @include animate-slide-up;
+  animation-delay: 0.3s;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  
+  @include sm {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+.ctaPrimary {
+  position: relative;
+  padding: 1rem 2rem;
+  @include gradient-to-r($primary, $primary-dark);
+  color: $white;
+  font-size: $text-base;
+  font-weight: 700;
+  border-radius: $rounded-xl;
+  transition: $transition-all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  
+  @include sm {
+    padding: 1.5rem 3rem;
+    font-size: $text-lg;
+    gap: 0.75rem;
+  }
+  
+  &:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 155, 63, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+.ctaShine {
+  position: absolute;
+  inset: 0;
+  @include gradient-to-r(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  transform: translateX(-100%);
+  transition: transform 0.7s;
+  
+  .ctaPrimary:hover & {
+    transform: translateX(100%);
+  }
+}
+
+.ctaText {
+  position: relative;
+}
+
+.ctaIcon {
+  position: relative;
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s;
+  
+  @include sm {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .ctaPrimary:hover & {
+    transform: translateX(0.25rem);
+  }
+}
+
+.ctaSecondary {
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  @include backdrop-blur(16px);
+  color: $white;
+  font-size: $text-base;
+  font-weight: 700;
+  border-radius: $rounded-xl;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: $transition-all;
+  text-align: center;
+  
+  @include sm {
+    padding: 1.5rem 3rem;
+    font-size: $text-lg;
+  }
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+  }
+}

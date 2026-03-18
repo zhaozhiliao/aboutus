@@ -1,0 +1,263 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/common-sections';
+
+.section {
+  @include dark-section;
+}
+
+.gridBg {
+  @include grid-bg-dark;
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  @include section-header;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: 0.375rem $spacing-4;
+  background-color: rgba(0, 155, 63, 0.1);
+  border: 1px solid rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  color: $primary;
+  font-size: $text-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  
+  svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+.title {
+  font-size: $text-4xl;
+  font-weight: 700;
+  color: $white;
+  letter-spacing: -0.025em;
+  
+  @include lg {
+    font-size: $text-6xl;
+  }
+}
+
+.divider {
+  @include flex-center;
+  gap: $spacing-2;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 3rem;
+  
+  &.left {
+    @include gradient-to-r(transparent, $primary);
+  }
+  
+  &.right {
+    @include gradient-to-r($primary, transparent);
+  }
+}
+
+.dividerDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: $rounded-full;
+  background-color: $primary;
+}
+
+.scrollContainer {
+  @include hide-scrollbar;
+  overflow: hidden;
+  margin-bottom: $spacing-4;
+  position: relative;
+  
+  &:hover .certsGrid {
+    animation-play-state: paused;
+  }
+}
+
+.certsGrid {
+  display: flex;
+  gap: 1.5rem;
+  animation: scroll 40s linear infinite;
+  
+  @include lg {
+    gap: 2rem;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.certCard {
+  @include glass-card-dark;
+  flex-shrink: 0;
+  width: 12rem;
+  scroll-snap-align: start;
+  @include animate-fade-in;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  z-index: 1;
+  
+  // 背景光晕
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(0, 155, 63, 0.2), rgba(0, 200, 83, 0.1));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+  
+  &:hover {
+    transform: translateY(-8px) scale(1.05);
+    border-color: rgba(0, 155, 63, 0.5);
+    box-shadow: 0 15px 35px -10px rgba(0, 155, 63, 0.4);
+    z-index: 10;
+    
+    &::before {
+      opacity: 1;
+    }
+    
+    .certImage {
+      border-color: rgba(0, 155, 63, 0.3);
+      transform: scale(1.02);
+    }
+  }
+  
+  .certImage {
+    position: relative;
+    aspect-ratio: 3/4;
+    border-radius: $rounded-lg;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+}
+
+.scrollHint {
+  text-align: center;
+  padding: $spacing-4 0;
+  
+  p {
+    font-size: $text-xs;
+    color: $gray-500;
+    
+    @include lg {
+      font-size: $text-sm;
+    }
+    
+    &::before {
+      content: '⏸️ ';
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  }
+  
+  .scrollContainer:hover ~ & p::before {
+    opacity: 1;
+  }
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  @include lg {
+    gap: 2.5rem;
+  }
+}
+
+.highlightCard {
+  @include glass-card-dark;
+  text-align: center;
+  @include animate-fade-in;
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  @include lg {
+    padding: 2.5rem 2rem;
+  }
+  
+  // 底部装饰线
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, $primary, transparent);
+    transform: translateX(-50%);
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  &:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 155, 63, 0.5);
+    box-shadow: 0 15px 35px -10px rgba(0, 155, 63, 0.3);
+    
+    &::after {
+      width: 70%;
+    }
+    
+    .highlightIcon {
+      transform: scale(1.15) rotate(5deg);
+      filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    }
+    
+    .highlightTitle {
+      color: $primary-light;
+    }
+  }
+}
+
+.highlightIcon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto $spacing-4;
+  filter: invert(79%) sepia(29%) saturate(1093%) hue-rotate(74deg) brightness(96%) contrast(92%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.highlightTitle {
+  font-size: $text-xl;
+  font-weight: 700;
+  color: $white;
+  margin-bottom: $spacing-2;
+  transition: color 0.3s ease;
+}
+
+.highlightDescription {
+  font-size: $text-sm;
+  color: $gray-400;
+}

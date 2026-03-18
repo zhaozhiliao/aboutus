@@ -1,0 +1,401 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/animations';
+
+.section {
+  position: relative;
+  padding: 6rem 0;
+  @include gradient-to-br($gray-900, $black, $gray-900);
+  overflow: hidden;
+  
+  @include lg {
+    padding: 8rem 0;
+  }
+}
+
+.gridBg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  background-image: 
+    linear-gradient($primary 1px, transparent 1px),
+    linear-gradient(90deg, $primary 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.glowContainer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+}
+
+.glow1 {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  width: 24rem;
+  height: 24rem;
+  background-color: $primary;
+  border-radius: $rounded-full;
+  filter: blur(96px);
+  animation: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.glow2 {
+  position: absolute;
+  bottom: 25%;
+  right: 0;
+  width: 24rem;
+  height: 24rem;
+  background-color: $primary;
+  border-radius: $rounded-full;
+  filter: blur(96px);
+  animation: pulse 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 1s;
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-6;
+  @include animate-fade-in;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: 0.375rem $spacing-4;
+  background-color: rgba(0, 155, 63, 0.1);
+  border: 1px solid rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  color: $primary;
+  font-size: $text-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.pulseContainer {
+  position: relative;
+  display: flex;
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+.pulseOuter {
+  @include animate-ping;
+  position: absolute;
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  border-radius: $rounded-full;
+  background-color: $primary;
+  opacity: 0.75;
+}
+
+.pulseInner {
+  position: relative;
+  display: inline-flex;
+  border-radius: $rounded-full;
+  height: 0.5rem;
+  width: 0.5rem;
+  background-color: $primary;
+}
+
+.title {
+  font-size: $text-4xl;
+  font-weight: 700;
+  color: $white;
+  letter-spacing: -0.025em;
+  
+  @include lg {
+    font-size: $text-6xl;
+  }
+}
+
+.divider {
+  @include flex-center;
+  gap: $spacing-2;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 3rem;
+  
+  &.left {
+    @include gradient-to-r(transparent, $primary);
+  }
+  
+  &.right {
+    @include gradient-to-r($primary, transparent);
+  }
+}
+
+.dividerDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: $rounded-full;
+  background-color: $primary;
+}
+
+.subtitle {
+  font-size: $text-lg;
+  color: $gray-400;
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @include lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  @include gradient-to-br(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4), transparent);
+  @include backdrop-blur(12px);
+  border-radius: $rounded-3xl;
+  padding: 2rem;
+  border: 1px solid $gray-800;
+  transition: $transition-all;
+  overflow: hidden;
+  @include animate-fade-in;
+  
+  @include lg {
+    padding: 2.5rem;
+  }
+  
+  &:hover {
+    border-color: rgba(0, 155, 63, 0.5);
+  }
+}
+
+.topBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  @include gradient-to-r(transparent, $primary, transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.7s;
+  
+  .card:hover & {
+    transform: scaleX(1);
+  }
+}
+
+.bgGradient {
+  position: absolute;
+  inset: 0;
+  @include gradient-to-br(rgba(0, 155, 63, 0), rgba(0, 155, 63, 0.05), rgba(0, 155, 63, 0));
+  opacity: 0;
+  transition: opacity 0.5s;
+  
+  .card:hover & {
+    opacity: 1;
+  }
+}
+
+.watermark {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 6rem;
+  font-weight: 700;
+  color: rgba(0, 155, 63, 0.05);
+  transition: color 0.5s;
+  
+  .card:hover & {
+    color: rgba(0, 155, 63, 0.1);
+  }
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+}
+
+.cardHeader {
+  @include flex-between;
+}
+
+.iconBox {
+  width: 4rem;
+  height: 4rem;
+  @include gradient-to-br($primary, $primary-dark);
+  border-radius: $rounded-2xl;
+  @include flex-center;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(0, 155, 63, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  .card:hover & {
+    transform: scale(1.15) rotate(8deg);
+    box-shadow: 0 15px 35px -5px rgba(0, 155, 63, 0.4);
+  }
+  
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  filter: brightness(0) invert(1);
+}
+
+.stepLabel {
+  color: rgba(0, 155, 63, 0.6);
+  font-size: $text-sm;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+.cardTitle {
+  font-size: $text-2xl;
+  font-weight: 700;
+  color: $white;
+  transition: color 0.3s;
+  
+  @include lg {
+    font-size: $text-3xl;
+  }
+  
+  .card:hover & {
+    color: $primary-light;
+  }
+}
+
+.subtitleBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: rgba(0, 155, 63, 0.1);
+  border: 1px solid rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  
+  span {
+    font-size: $text-xs;
+    font-weight: 600;
+    color: $primary;
+    letter-spacing: 0.05em;
+  }
+}
+
+.description {
+  color: $gray-400;
+  line-height: 1.75;
+  transition: color 0.3s;
+  
+  .card:hover & {
+    color: $gray-300;
+  }
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding-top: $spacing-4;
+  border-top: 1px solid $gray-800;
+  transition: border-color 0.5s;
+  
+  .card:hover & {
+    border-color: rgba(0, 155, 63, 0.3);
+  }
+}
+
+.highlightDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: $rounded-full;
+  background-color: $primary;
+}
+
+.highlightText {
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $primary-light;
+}
+
+.bottomGlow {
+  position: absolute;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8rem;
+  height: 8rem;
+  background-color: rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  filter: blur(96px);
+  opacity: 0;
+  transition: opacity 0.5s;
+  
+  .card:hover & {
+    opacity: 1;
+  }
+}
+
+.cta {
+  margin-top: 4rem;
+  text-align: center;
+  @include animate-fade-in;
+  animation-delay: 500ms;
+}
+
+.ctaText {
+  color: $gray-500;
+  font-size: $text-sm;
+  margin-bottom: $spacing-6;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: $spacing-4 2rem;
+  @include gradient-to-r($primary, $primary-dark);
+  color: $white;
+  font-weight: 700;
+  border-radius: $rounded-xl;
+  transition: $transition-all;
+  
+  &:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 155, 63, 0.4);
+    transform: scale(1.05);
+  }
+  
+  
+  &:hover .ctaIcon {
+    transform: translateX(0.25rem);
+  }
+}
+
+.ctaIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s;
+  filter: brightness(0) invert(1);
+}

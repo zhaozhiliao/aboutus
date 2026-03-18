@@ -1,0 +1,170 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/common-sections';
+
+.section {
+  @include dark-section;
+}
+
+.gridBg {
+  @include grid-bg-dark;
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  @include section-header;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: 0.375rem $spacing-4;
+  background-color: rgba(0, 155, 63, 0.1);
+  border: 1px solid rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  color: $primary;
+  font-size: $text-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  
+  svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+.title {
+  font-size: $text-4xl;
+  font-weight: 700;
+  color: $white;
+  letter-spacing: -0.025em;
+  
+  @include lg {
+    font-size: $text-6xl;
+  }
+}
+
+.divider {
+  @include flex-center;
+  gap: $spacing-2;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 3rem;
+  
+  &.left {
+    @include gradient-to-r(transparent, $primary);
+  }
+  
+  &.right {
+    @include gradient-to-r($primary, transparent);
+  }
+}
+
+.dividerDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: $rounded-full;
+  background-color: $primary;
+}
+
+.regionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.region {
+  h3 {
+    font-size: $text-2xl;
+    font-weight: 700;
+    color: $white;
+    margin-bottom: 2rem;
+    text-align: center;
+    
+    @include lg {
+      font-size: $text-3xl;
+    }
+  }
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.memberCard {
+  @include glass-card-dark;
+  text-align: center;
+  @include animate-fade-in;
+}
+
+.avatar {
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto $spacing-4;
+  border-radius: $rounded-full;
+  overflow: hidden;
+  border: 3px solid rgba(0, 155, 63, 0.3);
+}
+
+.name {
+  font-size: $text-xl;
+  font-weight: 700;
+  color: $white;
+  margin-bottom: $spacing-2;
+}
+
+.role {
+  font-size: $text-sm;
+  color: $primary-light;
+  margin-bottom: $spacing-2;
+}
+
+.location {
+  font-size: $text-sm;
+  color: $gray-400;
+  margin-bottom: $spacing-4;
+}
+
+.contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 0.25rem;
+  background-color: rgba(0, 155, 63, 0.1);
+  border: 1px solid rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-lg;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba(0, 155, 63, 0.2);
+    border-color: rgba(0, 155, 63, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+.contactIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  filter: invert(79%) sepia(29%) saturate(1093%) hue-rotate(74deg) brightness(96%) contrast(92%);
+}

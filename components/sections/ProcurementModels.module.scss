@@ -1,0 +1,453 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/animations';
+
+.section {
+  position: relative;
+  padding: 6rem 0;
+  @include gradient-to-b($white, $gray-50, $white);
+  overflow: hidden;
+  
+  @include lg {
+    padding: 8rem 0;
+  }
+}
+
+.bgPattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: radial-gradient(circle at 2px 2px, $primary 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-6;
+  @include animate-fade-in;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: 0.375rem $spacing-4;
+  background-color: rgba(0, 155, 63, 0.1);
+  border: 1px solid rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  color: $primary;
+  font-size: $text-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  
+  svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+.title {
+  font-size: $text-4xl;
+  font-weight: 700;
+  color: $gray-900;
+  letter-spacing: -0.025em;
+  
+  @include lg {
+    font-size: $text-6xl;
+  }
+}
+
+.divider {
+  @include flex-center;
+  gap: $spacing-2;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 3rem;
+  
+  &.left {
+    @include gradient-to-r(transparent, $primary);
+  }
+  
+  &.right {
+    @include gradient-to-r($primary, transparent);
+  }
+}
+
+.dividerDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: $rounded-full;
+  background-color: $primary;
+}
+
+.subtitle {
+  font-size: $text-lg;
+  color: $gray-600;
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1152px;
+  margin: 0 auto;
+  
+  @include lg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  border-radius: $rounded-3xl;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  @include animate-fade-in;
+  
+  &.dark {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 2px solid rgba(0, 155, 63, 0.3);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
+    
+    &:hover {
+      border-color: rgba(0, 155, 63, 0.5);
+      box-shadow: 0 25px 50px -12px rgba(0, 155, 63, 0.4);
+      transform: translateY(-6px);
+    }
+  }
+  
+  &.light {
+    background-color: $white;
+    border: 2px solid rgba(0, 155, 63, 0.15);
+    box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.08);
+    
+    &:hover {
+      border-color: rgba(0, 155, 63, 0.3);
+      box-shadow: 0 20px 45px -10px rgba(0, 155, 63, 0.18);
+      transform: translateY(-6px);
+    }
+  }
+}
+
+.cardBgPattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  background-image: 
+    linear-gradient($primary 1px, transparent 1px),
+    linear-gradient(90deg, $primary 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.cardGlow {
+  position: absolute;
+  width: 16rem;
+  height: 16rem;
+  border-radius: $rounded-full;
+  filter: blur(96px);
+  
+  &.dark {
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 155, 63, 0.1);
+  }
+  
+  &.light {
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 155, 63, 0.05);
+  }
+}
+
+.cardTopBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  @include gradient-to-r(transparent, $primary, transparent);
+  transform: scaleX(0);
+  transition: transform 0.7s;
+  
+  .card:hover & {
+    transform: scaleX(1);
+  }
+}
+
+.cardContent {
+  position: relative;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  
+  @include lg {
+    padding: 3rem;
+  }
+}
+
+.cardHeader {
+  @include flex-between;
+}
+
+.iconBox {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: $rounded-xl;
+  @include flex-center;
+  box-shadow: 0 8px 20px -5px rgba(0, 155, 63, 0.25);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  .card:hover & {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 30px -5px rgba(0, 155, 63, 0.35);
+  }
+  
+  &.dark {
+    background: linear-gradient(135deg, #009B3F 0%, #007A32 100%);
+    box-shadow: 0 8px 20px -5px rgba(0, 155, 63, 0.4);
+  }
+  
+  &.light {
+    background: linear-gradient(135deg, rgba(0, 155, 63, 0.15) 0%, rgba(0, 200, 83, 0.1) 100%);
+    border: 2px solid rgba(0, 155, 63, 0.25);
+  }
+  
+}
+
+.iconDark {
+  width: 2rem;
+  height: 2rem;
+  filter: brightness(0) invert(1);
+}
+
+.iconLight {
+  width: 2rem;
+  height: 2rem;
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
+
+.cardBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: $rounded-full;
+  font-size: $text-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  
+  &.dark {
+    background-color: rgba(0, 155, 63, 0.2);
+    color: $primary-light;
+    border: 1px solid rgba(0, 155, 63, 0.3);
+  }
+  
+  &.light {
+    background-color: rgba(0, 155, 63, 0.1);
+    color: $primary;
+    border: 1px solid rgba(0, 155, 63, 0.2);
+  }
+}
+
+.cardTitle {
+  font-size: $text-3xl;
+  font-weight: 700;
+  margin-bottom: $spacing-4;
+  
+  @include lg {
+    font-size: $text-4xl;
+  }
+  
+  &.dark {
+    color: $white;
+  }
+  
+  &.light {
+    color: $gray-900;
+  }
+}
+
+.cardDescription {
+  font-size: $text-base;
+  line-height: 1.75;
+  
+  &.dark {
+    color: $gray-400;
+  }
+  
+  &.light {
+    color: $gray-600;
+  }
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  padding-top: $spacing-4;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  padding: $spacing-3;
+  border-radius: $rounded-xl;
+  transition: all 0.3s ease;
+  cursor: default;
+  
+  &.dark {
+    background-color: rgba(0, 0, 0, 0.2);
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  &.light {
+    background-color: rgba(0, 155, 63, 0.05);
+    
+    &:hover {
+      background-color: rgba(0, 155, 63, 0.08);
+    }
+  }
+}
+
+.featureIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: $rounded-lg;
+  @include flex-center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  
+  &.dark {
+    background-color: rgba(0, 155, 63, 0.2);
+    border: 1px solid rgba(0, 155, 63, 0.3);
+  }
+  
+  &.light {
+    background-color: rgba(0, 155, 63, 0.1);
+    border: 1px solid rgba(0, 155, 63, 0.2);
+  }
+  
+  .feature:hover & {
+    transform: scale(1.1);
+    
+    &.dark {
+      background-color: rgba(0, 155, 63, 0.3);
+    }
+    
+    &.light {
+      background-color: rgba(0, 155, 63, 0.15);
+    }
+  }
+}
+
+.featureIconDark {
+  width: 1.125rem;
+  height: 1.125rem;
+  filter: invert(79%) sepia(29%) saturate(1093%) hue-rotate(74deg) brightness(96%) contrast(92%);
+}
+
+.featureIconLight {
+  width: 1.125rem;
+  height: 1.125rem;
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
+
+.featureText {
+  font-size: $text-sm;
+  font-weight: 500;
+  
+  &.dark {
+    color: $gray-300;
+  }
+  
+  &.light {
+    color: $gray-700;
+  }
+}
+
+.cta {
+  padding-top: $spacing-4;
+}
+
+.ctaButton {
+  width: 100%;
+  padding: $spacing-4;
+  border-radius: $rounded-xl;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &.dark {
+    background-color: $primary;
+    color: $white;
+    box-shadow: 0 10px 20px -5px rgba(0, 155, 63, 0.4);
+    
+    &:hover {
+      background-color: $primary-dark;
+      box-shadow: 0 15px 30px -5px rgba(0, 155, 63, 0.5);
+    }
+  }
+  
+  &.light {
+    @include gradient-to-r($primary, $primary-dark);
+    color: $white;
+    box-shadow: 0 10px 20px -5px rgba(0, 155, 63, 0.4);
+    
+    &:hover {
+      box-shadow: 0 15px 30px -5px rgba(0, 155, 63, 0.5);
+      filter: brightness(1.1);
+    }
+  }
+}
+
+.cardBottomGlow {
+  position: absolute;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8rem;
+  height: 8rem;
+  border-radius: $rounded-full;
+  filter: blur(96px);
+  opacity: 0;
+  transition: opacity 0.5s;
+  
+  .card:hover & {
+    opacity: 1;
+  }
+  
+  &.dark {
+    background-color: rgba(0, 155, 63, 0.3);
+  }
+  
+  &.light {
+    background-color: rgba(0, 155, 63, 0.2);
+  }
+}

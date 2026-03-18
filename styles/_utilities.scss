@@ -1,0 +1,53 @@
+@import './variables';
+
+// 通用工具类
+.container-max {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-6;
+}
+
+.section-padding {
+  padding: 6rem 0;
+  
+  @include lg {
+    padding: 8rem 0;
+  }
+}
+
+// 文本工具
+.text-gradient-primary {
+  @include text-gradient($primary-light, $white, $primary-light);
+}
+
+// 背景工具
+.bg-dark-gradient {
+  @include gradient-to-br($gray-900, $black, $gray-900);
+}
+
+.bg-light-gradient {
+  @include gradient-to-b($white, $gray-50, $white);
+}
+
+// 卡片工具
+.glass-card {
+  @include gradient-to-br(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), transparent);
+  @include backdrop-blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $rounded-2xl;
+  padding: $spacing-6;
+  transition: $transition-all;
+  
+  &:hover {
+    border-color: rgba(0, 155, 63, 0.4);
+    box-shadow: $shadow-xl;
+  }
+}
+
+.dark-glass-card {
+  @include gradient-to-br(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4), transparent);
+  @include backdrop-blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $rounded-2xl;
+  padding: $spacing-6;
+}

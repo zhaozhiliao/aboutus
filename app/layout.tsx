@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./globals.scss";
 
 export const metadata: Metadata = {
   title: "About Guazi - China's Premier Automotive Trading Platform",

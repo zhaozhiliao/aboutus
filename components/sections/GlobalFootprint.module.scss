@@ -1,0 +1,319 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/common-sections';
+
+.section {
+  @include dark-section;
+}
+
+.gridBg {
+  @include grid-bg-dark;
+}
+
+.glowContainer {
+  @include glow-effects;
+}
+
+.glow1, .glow2 {
+  position: absolute;
+  width: 24rem;
+  height: 24rem;
+  background-color: $primary;
+  border-radius: $rounded-full;
+  filter: blur(96px);
+  animation: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.glow1 {
+  top: 25%;
+  left: 25%;
+}
+
+.glow2 {
+  bottom: 25%;
+  right: 25%;
+  animation-duration: 7s;
+  animation-delay: 1s;
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  @include section-header;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: 0.375rem $spacing-4;
+  background-color: rgba(0, 155, 63, 0.1);
+  border: 1px solid rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  color: $primary;
+  font-size: $text-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.pulseContainer {
+  position: relative;
+  display: flex;
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+.pulseOuter {
+  @include animate-ping;
+  position: absolute;
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  border-radius: $rounded-full;
+  background-color: $primary;
+  opacity: 0.75;
+}
+
+.pulseInner {
+  position: relative;
+  display: inline-flex;
+  border-radius: $rounded-full;
+  height: 0.5rem;
+  width: 0.5rem;
+  background-color: $primary;
+}
+
+.title {
+  font-size: $text-4xl;
+  font-weight: 700;
+  color: $white;
+  letter-spacing: -0.025em;
+  
+  @include lg {
+    font-size: $text-6xl;
+  }
+}
+
+.divider {
+  @include flex-center;
+  gap: $spacing-2;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 3rem;
+  
+  &.left {
+    @include gradient-to-r(transparent, $primary);
+  }
+  
+  &.right {
+    @include gradient-to-r($primary, transparent);
+  }
+}
+
+.dividerDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: $rounded-full;
+  background-color: $primary;
+}
+
+.subtitle {
+  font-size: $text-lg;
+  color: $gray-400;
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+.regionsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  @include lg {
+    gap: 2.5rem;
+  }
+}
+
+.regionCard {
+  @include glass-card-dark;
+  @include animate-fade-in;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  @include lg {
+    padding: 3rem 2.5rem;
+  }
+  
+  // 背景光晕效果
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 155, 63, 0.15) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+  }
+  
+  &:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 155, 63, 0.5);
+    box-shadow: 0 20px 40px -10px rgba(0, 155, 63, 0.3);
+    
+    &::before {
+      width: 200%;
+      height: 200%;
+      opacity: 1;
+    }
+    
+    .regionVehicles {
+      transform: scale(1.1);
+      text-shadow: 0 0 20px rgba(0, 200, 83, 0.5);
+    }
+  }
+}
+
+.regionName {
+  font-size: $text-2xl;
+  font-weight: 700;
+  color: $white;
+  margin-bottom: $spacing-3;
+  
+  @include lg {
+    font-size: $text-3xl;
+  }
+}
+
+.regionCountries {
+  font-size: $text-sm;
+  color: $gray-400;
+  margin-bottom: $spacing-5;
+  line-height: 1.6;
+  
+  @include lg {
+    font-size: $text-base;
+  }
+}
+
+.vehiclesSection {
+  margin-top: $spacing-2;
+}
+
+.regionVehicles {
+  font-size: $text-4xl;
+  font-weight: 700;
+  color: $primary-light;
+  margin-bottom: $spacing-2;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  
+  @include lg {
+    font-size: $text-5xl;
+  }
+}
+
+.vehiclesLabel {
+  font-size: $text-sm;
+  color: $gray-500;
+  font-weight: 500;
+  
+  @include lg {
+    font-size: $text-base;
+  }
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+.highlightCard {
+  @include glass-card-dark;
+  @include animate-fade-in;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  @include lg {
+    padding: 2.5rem 2rem;
+  }
+  
+  // 顶部装饰线
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, $primary-light, transparent);
+    transform: translateX(-50%);
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  &:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: rgba(0, 155, 63, 0.5);
+    box-shadow: 0 15px 35px -10px rgba(0, 155, 63, 0.3);
+    
+    &::after {
+      width: 80%;
+    }
+    
+    .highlightNumber {
+      transform: scale(1.15);
+      color: $primary;
+    }
+  }
+}
+
+.highlightNumber {
+  font-size: $text-5xl;
+  font-weight: 700;
+  color: $primary-light;
+  margin-bottom: $spacing-3;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  @include lg {
+    font-size: $text-6xl;
+  }
+}
+
+.highlightLabel {
+  font-size: $text-base;
+  font-weight: 600;
+  color: $gray-300;
+  
+  @include lg {
+    font-size: $text-lg;
+  }
+}

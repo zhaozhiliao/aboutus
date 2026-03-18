@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import styles from "./Navbar.module.scss";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,21 +15,14 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white shadow-lg"
-          : "bg-white/95 backdrop-blur-sm"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-center h-20">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">G</span>
+    <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : styles.notScrolled}`}>
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <div className={styles.logo}>
+            <div className={styles.logoIcon}>
+              <span>G</span>
             </div>
-            <span className="text-2xl font-bold text-gray-900">Guazi</span>
+            <span className={styles.logoText}>Guazi</span>
           </div>
         </div>
       </div>

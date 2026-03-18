@@ -1,0 +1,257 @@
+@import './variables';
+
+// 响应式断点混合宏
+@mixin sm {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media (min-width: $breakpoint-2xl) {
+    @content;
+  }
+}
+
+// 移动端优先（360px 基准）
+@mixin mobile-first {
+  @media (max-width: calc(#{$breakpoint-sm} - 1px)) {
+    @content;
+  }
+}
+
+// 响应式容器
+@mixin container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  
+  // 移动端 360px
+  max-width: 100%;
+  
+  // 平板 768px
+  @include md {
+    max-width: $container-tablet;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  // PC端 1024px
+  @include lg {
+    max-width: $container-desktop;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  // PC大屏及以上 - 最大 1440px
+  @include xl {
+    max-width: $container-wide;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+// Flexbox 混合宏
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+// 渐变背景
+@mixin gradient-primary {
+  background: linear-gradient(to right, $primary-light, $primary);
+}
+
+@mixin gradient-to-b($from, $via: null, $to: null) {
+  @if $to {
+    background: linear-gradient(to bottom, $from, $via, $to);
+  } @else if $via {
+    background: linear-gradient(to bottom, $from, $via);
+  } @else {
+    background: $from;
+  }
+}
+
+@mixin gradient-to-br($from, $via: null, $to: null) {
+  @if $to {
+    background: linear-gradient(to bottom right, $from, $via, $to);
+  } @else if $via {
+    background: linear-gradient(to bottom right, $from, $via);
+  } @else {
+    background: $from;
+  }
+}
+
+@mixin gradient-to-r($from, $via: null, $to: null) {
+  @if $to {
+    background: linear-gradient(to right, $from, $via, $to);
+  } @else if $via {
+    background: linear-gradient(to right, $from, $via);
+  } @else {
+    background: $from;
+  }
+}
+
+// 文字渐变
+@mixin text-gradient($from, $via, $to) {
+  background: linear-gradient(to right, $from, $via, $to);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// 毛玻璃效果
+@mixin backdrop-blur($amount: 12px) {
+  backdrop-filter: blur($amount);
+  -webkit-backdrop-filter: blur($amount);
+}
+
+// 截断文本
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// 动画
+@mixin animate-fade-in($delay: 0s) {
+  animation: fadeIn 0.6s ease-out $delay both;
+}
+
+@mixin animate-slide-up($delay: 0s) {
+  animation: slideUp 0.6s ease-out $delay both;
+}
+
+@mixin animate-pulse($duration: 2s) {
+  animation: pulse $duration cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@mixin animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+// 隐藏滚动条
+@mixin hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+// 容器
+@mixin container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $spacing-6;
+  padding-right: $spacing-6;
+  
+  @include sm {
+    max-width: 640px;
+  }
+  
+  @include md {
+    max-width: 768px;
+  }
+  
+  @include lg {
+    max-width: 1024px;
+  }
+  
+  @include xl {
+    max-width: 1280px;
+  }
+  
+  @include xxl {
+    max-width: 1536px;
+  }
+}
+
+// 按钮基础样式
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-3 $spacing-6;
+  font-weight: 600;
+  border-radius: $rounded-xl;
+  transition: $transition-all;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $primary;
+  color: $white;
+  
+  &:hover {
+    background-color: $primary-dark;
+  }
+}
+
+// 卡片样式
+@mixin card {
+  background-color: $white;
+  border-radius: $rounded-2xl;
+  box-shadow: $shadow-md;
+  padding: $spacing-6;
+  transition: $transition-all;
+  
+  &:hover {
+    box-shadow: $shadow-xl;
+  }
+}
+
+// 网格背景
+@mixin grid-background($color: $primary, $size: 60px, $opacity: 0.02) {
+  background-image: 
+    linear-gradient($color 1px, transparent 1px),
+    linear-gradient(90deg, $color 1px, transparent 1px);
+  background-size: $size $size;
+  opacity: $opacity;
+}

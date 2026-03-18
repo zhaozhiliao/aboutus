@@ -1,0 +1,106 @@
+@import './variables';
+@import './mixins';
+
+// 通用的深色背景 section
+@mixin dark-section {
+  position: relative;
+  padding: 6rem 0;
+  @include gradient-to-br($gray-900, $black, $gray-900);
+  overflow: hidden;
+  
+  @include lg {
+    padding: 8rem 0;
+  }
+}
+
+// 通用的浅色背景 section
+@mixin light-section {
+  position: relative;
+  padding: 6rem 0;
+  @include gradient-to-b($white, $gray-50, $white);
+  overflow: hidden;
+  
+  @include lg {
+    padding: 8rem 0;
+  }
+}
+
+// 通用的网格背景
+@mixin grid-bg-dark {
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  background-image: 
+    linear-gradient($primary 1px, transparent 1px),
+    linear-gradient(90deg, $primary 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+@mixin grid-bg-light {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: radial-gradient(circle at 2px 2px, $primary 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+// 通用的光晕效果
+@mixin glow-effects {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+}
+
+// 通用的 header 样式
+@mixin section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-6;
+  @include animate-fade-in;
+}
+
+// 通用的卡片样式
+@mixin glass-card-dark {
+  @include gradient-to-br(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4), transparent);
+  @include backdrop-blur(12px);
+  border: 1px solid $gray-800;
+  border-radius: $rounded-3xl;
+  padding: 2rem;
+  transition: $transition-all;
+  
+  @include lg {
+    padding: 2.5rem;
+  }
+  
+  &:hover {
+    border-color: rgba(0, 155, 63, 0.5);
+  }
+}
+
+@mixin glass-card-light {
+  background-color: $white;
+  border: 2px solid $gray-200;
+  border-radius: $rounded-3xl;
+  padding: 2rem;
+  box-shadow: $shadow-md;
+  transition: $transition-all;
+  
+  @include lg {
+    padding: 2.5rem;
+  }
+  
+  &:hover {
+    border-color: rgba(0, 155, 63, 0.3);
+    box-shadow: $shadow-xl;
+  }
+}
+
+// 通用的容器样式（用于限制内容宽度）
+@mixin section-container {
+  @include container;
+  position: relative;
+  z-index: 1;
+}

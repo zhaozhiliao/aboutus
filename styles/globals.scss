@@ -1,0 +1,49 @@
+@import './variables';
+@import './mixins';
+@import './animations';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: $gray-900;
+  background: $white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+// 全局动画类
+.animate-fade-in {
+  @include animate-fade-in;
+}
+
+.animate-slide-up {
+  @include animate-slide-up;
+}
+
+// 隐藏滚动条
+.scrollbar-hide {
+  @include hide-scrollbar;
+}

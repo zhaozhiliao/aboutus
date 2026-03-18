@@ -1,0 +1,337 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/common-sections';
+
+.section {
+  @include dark-section;
+  padding-bottom: 0;
+}
+
+.gridBg {
+  @include grid-bg-dark;
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  @include section-header;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: 0.375rem $spacing-4;
+  background-color: rgba(0, 155, 63, 0.1);
+  border: 1px solid rgba(0, 155, 63, 0.2);
+  border-radius: $rounded-full;
+  color: $primary;
+  font-size: $text-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  
+  svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+.title {
+  font-size: $text-4xl;
+  font-weight: 700;
+  color: $white;
+  letter-spacing: -0.025em;
+  
+  @include lg {
+    font-size: $text-6xl;
+  }
+}
+
+.divider {
+  @include flex-center;
+  gap: $spacing-2;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 3rem;
+  
+  &.left {
+    @include gradient-to-r(transparent, $primary);
+  }
+  
+  &.right {
+    @include gradient-to-r($primary, transparent);
+  }
+}
+
+.dividerDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: $rounded-full;
+  background-color: $primary;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  
+  @include lg {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  
+  @include lg {
+    gap: 2rem;
+  }
+}
+
+.contactCard {
+  @include glass-card-dark;
+  @include flex-start;
+  gap: $spacing-4;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 2px solid rgba(0, 155, 63, 0.15);
+  position: relative;
+  overflow: hidden;
+  
+  @include lg {
+    padding: 2.5rem;
+  }
+  
+  // 背景光晕效果
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 155, 63, 0.15) 0%, transparent 70%);
+    opacity: 0;
+    transition: all 0.4s ease;
+    pointer-events: none;
+  }
+  
+  &:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 155, 63, 0.4);
+    box-shadow: 0 25px 50px -12px rgba(0, 155, 63, 0.25);
+    
+    &::before {
+      opacity: 1;
+      left: 0;
+    }
+    
+    .contactIcon {
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 0 15px 35px -5px rgba(0, 155, 63, 0.5);
+    }
+    
+    .contactText h3 {
+      color: $primary-light;
+    }
+  }
+}
+
+.contactIcon {
+  width: 4rem;
+  height: 4rem;
+  @include gradient-to-br($primary, $primary-dark);
+  border-radius: $rounded-2xl;
+  @include flex-center;
+  flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 20px rgba(0, 155, 63, 0.3);
+  position: relative;
+  z-index: 1;
+  
+  @include lg {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+  
+}
+
+.iconImage {
+  width: 1.75rem;
+  height: 1.75rem;
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+  
+  @include lg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.contactText {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  
+  h3 {
+    font-size: $text-lg;
+    font-weight: 700;
+    color: $white;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+    
+    @include lg {
+      font-size: $text-xl;
+    }
+  }
+  
+  p {
+    font-size: $text-base;
+    color: $gray-400;
+    font-weight: 500;
+    
+    @include lg {
+      font-size: $text-lg;
+    }
+  }
+}
+
+.form {
+  @include glass-card-dark;
+  padding: 2rem;
+  
+  @include lg {
+    padding: 2.5rem;
+  }
+  
+  .formGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    
+    &.fullWidth {
+      @include md {
+        grid-column: span 2;
+      }
+    }
+  }
+  
+  label {
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $white;
+  }
+  
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: $spacing-3 $spacing-4;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $rounded-lg;
+    color: $white;
+    font-size: $text-base;
+    transition: $transition-all;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+  
+  textarea {
+    min-height: 8rem;
+    resize: vertical;
+  }
+  
+  select {
+    cursor: pointer;
+  }
+}
+
+.submitButton {
+  width: 100%;
+  padding: $spacing-4;
+  @include gradient-to-r($primary, $primary-dark);
+  color: $white;
+  font-size: $text-lg;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  border-radius: $rounded-xl;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2;
+  box-shadow: 0 10px 20px -5px rgba(0, 155, 63, 0.4);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 30px -5px rgba(0, 155, 63, 0.5);
+    filter: brightness(1.1);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+}
+
+.submitIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  filter: brightness(0) invert(1);
+}
+
+.trust {
+  text-align: center;
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 3rem;
+  
+  p {
+    font-size: $text-sm;
+    color: $gray-500;
+    margin-bottom: $spacing-4;
+  }
+}
+
+.trustLogos {
+  @include flex-center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  
+  svg {
+    height: 2rem;
+    color: $gray-600;
+  }
+}
